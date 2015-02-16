@@ -9,7 +9,7 @@ public class Main {
         t.test_exercice_1();
         t.test_exercice_2();
         t.test_exercice_3();
-
+        
 
     }
 }

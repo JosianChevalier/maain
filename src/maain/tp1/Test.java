@@ -60,18 +60,18 @@ public class Test {
         System.out.println("Exercice 3 :");
         Matrice[] m=new Matrice[5];
         try {
-            //m[0] = this.getMatrixFromFile("maain/tp1/resources/matrix.txt");
-            //m[1] = this.getMatrixFromFile("maain/tp1/resources/centrale.txt");
-//            m[2] = this.getMatrixFromFile("maain/tp1/resources/hamiltonien.txt");
-            //non_connexe = this.getMatrixFromFile("src/maain/tp1/resources/non_connexe.txt");
-            m[3] = this.getMatrixFromFile("maain/tp1/resources/puit.txt");
+            m[0] = this.getMatrixFromFile("maain/tp1/resources/matrix.txt");
+            m[1] = this.getMatrixFromFile("maain/tp1/resources/centrale.txt");
+            m[2] = this.getMatrixFromFile("maain/tp1/resources/hamiltonien.txt");
+            //m[3] = this.getMatrixFromFile("maain/tp1/resources/non_connexe.txt");
+            m[4] = this.getMatrixFromFile("maain/tp1/resources/puit.txt");
         }
         catch (IOException e){
             System.out.println(e.getMessage());
             return;
         }
 
-        System.out.println("\nMatrice : " + m[0].toString());
+        //System.out.println("\nMatrice : " + m[0].toString());
         System.out.print("From 0 : ");
         System.out.print("Vecteur : ");
 //        m.print_float_table(vect);
@@ -84,7 +84,30 @@ public class Test {
             Fonctions de création d'une matrice à partir d'un fichier
      */
 
+    public int matrix_size(String matrix_file) {
+        int size = -1;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(matrix_file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] split = line.split(" ");
+                Integer x = Integer.parseInt(split[0]);
+                Integer y = Integer.parseInt(split[1]);
+                if(x > size){
+                    size = x;
+                }
+                if(y > size){
+                    size = y;
+                }
+            }
 
+            br.close();
+        } catch (IOException e) {
+            System.out.println("'" + matrix_file + "' doesn't exist.");
+        }
+
+        return size;
+    }
 
     public void push_matrice(Matrice m, int origin_node, LinkedList<Integer> values) {
         int size = values.size();
@@ -98,15 +121,13 @@ public class Test {
     }
 
     public Matrice getMatrixFromFile(String filename) throws IOException{
-
-        Matrice m = new Matrice(this.matrix_size(filename) + 1);
+        Matrice m = new Matrice(this.matrix_size(filename)+1);
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             String line;
             int pos = -1;
             LinkedList<Integer> values = new LinkedList<Integer>();
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
                 String[] split = line.split(" ");
                 Integer x = Integer.parseInt(split[0]);
                 Integer y = Integer.parseInt(split[1]);
