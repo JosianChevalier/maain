@@ -1,6 +1,7 @@
 package maain.tp1;
 
 import java.io.*;
+import java.util.LinkedList;
 
 public class Test {
 
@@ -33,24 +34,86 @@ public class Test {
         System.out.println();
     }
 
+    public int matrix_size(String matrix_file){
+        int size = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(matrix_file));
+            String line;
+            int pos = -1;
+            while ((line = br.readLine()) != null) {
+                String[] split = line.split(" ");                
+                Integer x = Integer.parseInt(split[0]);
+                Integer y = Integer.parseInt(split[1]);
+                if(pos != x) {
+                    pos = x;                    
+                } else {
+                    size++;
+                }
+            }
+
+            br.close();
+       } catch(IOException e){
+            System.out.println("'" + matrix_file + "' doesn't exist.");
+       }
+
+       return size;
+   }
+
+    public void push_matrice(Matrice m, int origin_node, LinkedList<Integer> values){
+        int size = values.size();
+        if(size == 0){
+            return;
+        }
+        float value = 1/(float)size;
+        for(int i = 0; i < size; i++){
+            m.changeValue(origin_node, values.get(i), value);
+        }
+    }
+
+
+
     public boolean test_file(String filename){
+        System.out.println("\033[36m---------test_file---------!\033[0m");
+        Matrice m = new Matrice(this.matrix_size(filename)+1);        
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             String line;
-            int node_aux = null;
+            int pos = -1;
+            LinkedList<Integer> values = new LinkedList<Integer>();
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(" ");
-                int x = Integer.parseInt[values[0];
-                if(node_aux == null){
-                    node_aux = Integer.parseInt(values[0]);
-                } else if(node_aux != Integer.parseInt(changeValue)) {
-
+                String[] split = line.split(" ");                
+                Integer x = Integer.parseInt(split[0]);
+                Integer y = Integer.parseInt(split[1]);
+                if(pos == x) {
+                    values.add(y);
+                } else {
+                    this.push_matrice(m, pos, values);
+                    values = new LinkedList<Integer>();
+                    values.add(y);
+                    pos = x;
                 }
             }
+            this.push_matrice(m, pos, values);
+
             br.close();
        } catch(IOException e){
             System.out.println("'" + filename + "' doesn't exist.");
-       } 
+            return false;
+       }
+
+       float[][] mat = m.getMatrice();
+       float[][] mat2= {{0, 3, 3, 3}, {5, 0, 5, 0}, {0, 0, 0, 0}, {10, 0, 0, 0}};
+
+       for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[i].length; j++) {
+                if(mat2[i][j] != ((int)(10 *mat[i][j]))){
+                    System.out.println("M[" + i + "][" + j + "] = " + mat[i][j] + ", should equals : " + mat2[i][j]/10);
+                    return false;
+                }
+            }
+       }
+       System.out.println("\033[32m... ok !\033[0m");
        return true;
-    }
+    }    
+
 }

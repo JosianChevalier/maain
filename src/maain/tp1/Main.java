@@ -8,7 +8,7 @@ public class Main {
 
         t.test_exercice_1();
         if(!t.test_file("matrix.txt")){
-        	System.out.println("test_file failed");
+	       System.out.println("\033[31m... FAIL !!!\033[0m");
         }
     }
 }
