@@ -1,4 +1,4 @@
-package com.maain.tp1;
+package maain.tp1;
 
 public class Main {
 
