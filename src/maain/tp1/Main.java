@@ -6,10 +6,10 @@ public class Main {
 
         Test t = new Test();
 
-        t.test_exercice_1();
-        t.test_exercice_2();
-        t.test_exercice_3();
-        
+//        t.test_exercice_1();
+//        t.test_exercice_2();
+//        t.test_exercice_3();
+        t.test_exercice_5();
 
     }
 }

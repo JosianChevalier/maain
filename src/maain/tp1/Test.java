@@ -33,13 +33,13 @@ public class Test {
     public void test_exercice_2() {
         System.out.println("Exercice 2 :");
 
-        Matrice m=new Matrice(4); // version alternative d'instancier une matrice
-        m.changeValue(0,1,3);
+        Matrice m = new Matrice(4); // version alternative d'instancier une matrice
+        m.changeValue(0, 1, 3);
         m.changeValue(0, 2, 5);
         m.changeValue(0, 3, 8);
-        m.changeValue(1,0,1);
-        m.changeValue(1,2,2);
-        m.changeValue(3,1,3);
+        m.changeValue(1, 0, 1);
+        m.changeValue(1, 2, 2);
+        m.changeValue(3, 1, 3);
 
         float[] vect = {3, 2, 7, 5};
 
@@ -56,28 +56,55 @@ public class Test {
             Test de l'exercice 3
      */
 
-    public void test_exercice_3(){
+    public void test_exercice_3() {
         System.out.println("Exercice 3 :");
-        Matrice[] m=new Matrice[5];
+        Matrice[] m = new Matrice[5];
         try {
-            m[0] = this.getMatrixFromFile("maain/tp1/resources/matrix.txt");
-            m[1] = this.getMatrixFromFile("maain/tp1/resources/centrale.txt");
-            m[2] = this.getMatrixFromFile("maain/tp1/resources/hamiltonien.txt");
-            //m[3] = this.getMatrixFromFile("maain/tp1/resources/non_connexe.txt");
-            m[4] = this.getMatrixFromFile("maain/tp1/resources/puit.txt");
-        }
-        catch (IOException e){
+            m[0] = this.getMatrixFromFile("src/maain/tp1/resources/matrix.txt");
+            m[1] = this.getMatrixFromFile("src/maain/tp1/resources/centrale.txt");
+            m[2] = this.getMatrixFromFile("src/maain/tp1/resources/hamiltonien.txt");
+            m[3] = this.getMatrixFromFile("src/maain/tp1/resources/non_connexe.txt");
+            m[4] = this.getMatrixFromFile("src/maain/tp1/resources/puit.txt");
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return;
         }
 
-        //System.out.println("\nMatrice : " + m[0].toString());
-        System.out.print("From 0 : ");
-        System.out.print("Vecteur : ");
-//        m.print_float_table(vect);
-//        System.out.print("Result : ");
-//        m.print_float_table(m.mult_vect_transp(vect));
-//        System.out.println();
+        PageRank r = new PageRank();
+
+        for (Matrice matrix : m) {
+            System.out.println("\nMatrice : " + matrix.toString());
+            System.out.print("From 0 : ");
+            r.rank_zero(matrix,100);
+        }
+    }
+
+    /*
+            Test de l'exercice 5
+     */
+
+    public void test_exercice_5() {
+        System.out.println("Exercice 5 :");
+        Matrice[] m = new Matrice[6];
+        try {
+            m[0] = this.getMatrixFromFile("src/maain/tp1/resources/matrix.txt");
+            m[1] = this.getMatrixFromFile("src/maain/tp1/resources/centrale.txt");
+            m[2] = this.getMatrixFromFile("src/maain/tp1/resources/hamiltonien.txt");
+            m[3] = this.getMatrixFromFile("src/maain/tp1/resources/non_connexe.txt");
+            m[4] = this.getMatrixFromFile("src/maain/tp1/resources/puit.txt");
+            m[5] = this.getMatrixFromFile("src/maain/tp1/resources/web-Google.txt");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        PageRank r = new PageRank();
+
+        for (Matrice matrix : m) {
+            System.out.println("\nMatrice : " + matrix.toString());
+            System.out.print("From 0 : ");
+            r.rank_zero_zap(matrix, 10, 1.5f);
+        }
     }
 
     /*
@@ -93,10 +120,10 @@ public class Test {
                 String[] split = line.split(" ");
                 Integer x = Integer.parseInt(split[0]);
                 Integer y = Integer.parseInt(split[1]);
-                if(x > size){
+                if (x > size) {
                     size = x;
                 }
-                if(y > size){
+                if (y > size) {
                     size = y;
                 }
             }
@@ -120,17 +147,17 @@ public class Test {
         }
     }
 
-    public Matrice getMatrixFromFile(String filename) throws IOException{
-        Matrice m = new Matrice(this.matrix_size(filename)+1);
+    public Matrice getMatrixFromFile(String filename) throws IOException {
+        Matrice m = new Matrice(this.matrix_size(filename) + 1);
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             String line;
             int pos = -1;
             LinkedList<Integer> values = new LinkedList<Integer>();
             while ((line = br.readLine()) != null) {
-                String[] split = line.split(" ");
+                String[] split = line.split("[\\s\\t]");
                 Integer x = Integer.parseInt(split[0]);
-                Integer y = Integer.parseInt(split[1]);
+                Integer y = Integer.parseInt(split[1]);     
                 if (pos == x) {
                     values.add(y);
                 } else {
@@ -153,7 +180,7 @@ public class Test {
         System.out.println("\033[36m---------test_file---------!\033[0m");
         Matrice m;
         try {
-            m=this.getMatrixFromFile(filename);
+            m = this.getMatrixFromFile(filename);
         } catch (IOException e) {
             System.out.println("'" + filename + "' doesn't exist.");
             return false;
