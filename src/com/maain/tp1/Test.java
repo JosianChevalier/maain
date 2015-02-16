@@ -30,6 +30,6 @@ public class Test {
         m.print_float_table(m.mult_vect(vect));
         System.out.println();
     }
-//        m.print_float_table(m.mult_vect_transp(vect));
-//        m.print_float_table(m.mult_vect_transp_zap(vect, 0.125f));
+
+
 }

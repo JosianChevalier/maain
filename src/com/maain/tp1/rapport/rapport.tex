@@ -1,0 +1,67 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+%&pdflatex
+\documentclass{article}
+
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Moteurs de recherche \\ TP1} % Title
+
+\author{Josian \textsc{Chevalier}\\Thomas \textsc{Salmon}} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+
+\section{Exercice 1}
+
+Le type matrice peut être initialisé de deux façons :
+\begin{itemize}
+	\item En passant en paramètre de son constructeur les tableaux C, L et I. Dans ce cas elle sera directement initialisée avec les bonnes valeurs mais cela implique de calculer C, L et I au préalable
+	\item En passant en paramètre de son constructeur la taille de la matrice, auquel cas toutes les cases seront initialisées à 0. On pourra modifier leurs valeurs à la de la fonction changeValue(), afin de modifier les valeurs case par case.
+\end{itemize}
+
+L'initialisation d'une matrice est en temps constant. La récupération ou la modification d'une valeur est en O(m), car on parcours au maximum une sous section de I, pour représenter une ligne de la matrice.
+
+
+
+\section{Exercice 2}
+
+
+
+\end{document}

@@ -48,7 +48,8 @@ public class Matrice {
      * @param value
      */
     public void changeValue(int line, int column, float value) {
-        int line_start = L.get(line), line_end = L.get(line + 1), index = 0;
+        int line_start = L.get(line), line_end = L.get(line + 1), index = 0; //On récupère en temps constant les positions
+        //de début et de fin d'une ligne à l'aide de L
         Iterator<Integer> it = I.subList(line_start, I.size()).iterator();
         boolean found = false; //found indique si l'on a déjà trouvé la position de la case dans C
 
