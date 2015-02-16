@@ -1,5 +1,7 @@
 package com.maain.tp1;
 
+import java.io.*;
+
 public class Test {
 
     /*
@@ -31,5 +33,24 @@ public class Test {
         System.out.println();
     }
 
+    public boolean test_file(String filename){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            String line;
+            int node_aux = null;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(" ");
+                int x = Integer.parseInt[values[0];
+                if(node_aux == null){
+                    node_aux = Integer.parseInt(values[0]);
+                } else if(node_aux != Integer.parseInt(changeValue)) {
 
+                }
+            }
+            br.close();
+       } catch(IOException e){
+            System.out.println("'" + filename + "' doesn't exist.");
+       } 
+       return true;
+    }
 }

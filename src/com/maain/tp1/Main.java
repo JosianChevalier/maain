@@ -7,7 +7,9 @@ public class Main {
         Test t = new Test();
 
         t.test_exercice_1();
-
+        if(!t.test_file("matrix.txt")){
+        	System.out.println("test_file failed");
+        }
     }
 }
 
