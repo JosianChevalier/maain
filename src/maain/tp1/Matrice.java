@@ -179,7 +179,8 @@ public class Matrice {
 
         for (int i = 1; i < L.size(); i++) {
             for (float j = L.get(i - 1); j < L.get(i); j++) {
-                result[I.get((int) j)] += C.get((int) j) * vecteur[i - 1];
+                result[I.get((int) j)] += C.get((int) j) * vecteur[i - 1]; // On effectue les calculs non plus sur les
+                //colonnes de la matrice mais sur ses lignes
             }
         }
         return result;

@@ -8,7 +8,7 @@ public class PageRank {
     }
 
     /**
-     *
+     *  Retourne la liste des probabilités d'être sur chaque sommet en partant de la liste de probabilité p
      * @param m matrice des probabilités
      * @param p
      * @param nb_pas
